@@ -1,0 +1,121 @@
+config MACH_LGE
+	bool
+
+menu "LGE Board Selection"
+
+config MACH_MSM8226_W7DS_OPEN_CIS
+        depends on ARCH_MSM8226
+        select MACH_LGE
+        bool "MSM8226 W7DS OPEN CIS"
+        help
+          Support for the Qualcomm MSM8226 W7 Dual Sim Open device.
+
+config MACH_MSM8226_W7_OPEN_CIS
+        depends on ARCH_MSM8226
+        select MACH_LGE
+        bool "MSM8226 W7 OPEN CIS"
+        help
+          Support for the Qualcomm MSM8226 W7 Single Sim device.
+
+endmenu
+
+menu "LGE Specific Patches"
+
+config LGE_BOOTLOADER_LOG
+	tristate "Support LGE bootloader log"
+	default n
+	depends on MACH_LGE
+	help
+	  LGE bootloader log
+
+config LGE_HANDLE_PANIC
+	tristate "Support LGE Kernel Panic Handler"
+	default n
+	depends on MACH_LGE
+	help
+	  LGE Error handler
+
+config LGE_BOOTLOADER_TIME_CHECKER
+	bool "Show bootloader(LK, SBL) time"
+	default n
+	depends on MACH_LGE
+	help
+	  This shows the lk and sbl1 booting time in MSM8974.
+	  If this feature is enabled, it should be check by adb shell.
+	  Device Node : sys/module/lge_bootloader_time_checker/
+
+config LGE_USE_CPU_CLOCK_TIMESTAMP
+	bool "Print local time stamp for debugging"
+	default n
+	depends on MACH_LGE
+	help
+	  Print kernel time with local time for helping debug.
+
+config LGE_BNR_RECOVERY_REBOOT
+	bool "Support PC suite BNR recovery reboot"
+	default y
+	depends on MACH_LGE
+	help
+	  Support PC suite BNR recovery reboot. bnr recovery mode
+	  could be entered with reboot --bnr_recovery cmd.
+
+config LGE_QFPROM_INTERFACE
+	bool "Support qfprom interface"
+	default n
+	depends on MACH_LGE
+	help
+	  LGE QFPROM DRIVER.
+
+config LGE_ENABLE_MMC_STRENGTH_CONTROL
+	bool "Support MMC Strength Control"
+	default n
+	depends on MACH_LGE
+	help
+	  LGE mmc data,cmd,clk strength control support
+
+config LGE_PM_BATTERY_CAPACITY_1540mAh
+	bool "Support Battery Capacity"
+	depends on LGE_PM_BATTERY_PROFILE_DATA
+	help
+	  LGE battery capacity for 1540mAh
+
+config LGE_PM_BATTERY_CAPACITY_1700mAh
+	bool "Support Battery Capacity"
+	depends on LGE_PM_BATTERY_PROFILE_DATA
+	help
+	  LGE battery capacity for 1700mAh
+
+config LGE_PM_BATTERY_CAPACITY_2100mAh
+	bool "Support Battery Capacity"
+	depends on LGE_PM_BATTERY_PROFILE_DATA
+	help
+	  LGE battery capacity for 2100mAh
+
+config LGE_PM_BATTERY_CAPACITY_2440mAh
+	bool "Support Battery Capacity"
+	depends on LGE_PM_BATTERY_PROFILE_DATA
+	help
+	  LGE battery capacity for 2440mAh
+
+config LGE_PM_BATTERY_CAPACITY_2540mAh
+	bool "Support Battery Capacity"
+	depends on LGE_PM_BATTERY_PROFILE_DATA
+	help
+	  LGE battery capacity for 2540mAh
+
+config LGE_PM_BATTERY_CAPACITY_3000mAh
+	bool "Support Battery Capacity"
+	depends on LGE_PM_BATTERY_PROFILE_DATA
+	help
+	  LGE battery capacity for 3000mAh
+
+config LGE_CRASH_FOOTPRINT
+	boolean "Crash footprint for MLT"
+	default n
+	depends on MACH_LGE && LGE_HANDLE_PANIC
+	help
+	  This feature is crash footprint for MLT.
+	  This refers to lge.bootreason and give information if the crash occured in previous to MLT.
+	  Device Node : /sys/module/lge_handle_panic/parameters/crash_footprint
+
+endmenu
