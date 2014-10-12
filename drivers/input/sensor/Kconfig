@@ -59,8 +59,8 @@ config SENSOR_K303C
 
 config SENSOR_LGE_DT
        tristate "KNOCK-ON Driver"
-       depends on I2C
-       default n
+       depends on I2C=y
+       default y
        help
          Say Y here if you use lge knock-on
          If unsure, say N.
